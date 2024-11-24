@@ -1,7 +1,7 @@
 ### Version 1.0
    
 #### Funktionen 
-Schaltet eine Variable bei Sonnenaufgang bzw. Sonnenuntergang um. Es besteht die Möglichkeit für das einstellen einer Verzögerung zwischen -120 Sekunden und 120 Sekunden. 
+Schaltet eine Variable bei Sonnenaufgang bzw. Sonnenuntergang um. Es besteht die Möglichkeit für das einstellen einer Verzögerung zwischen -120 Minuten und 120 Minuten. 
 
 
 #### Konfigurationsformular
