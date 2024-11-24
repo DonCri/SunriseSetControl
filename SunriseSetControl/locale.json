@@ -11,7 +11,8 @@
             "Delayed sunrise time" : "Verzögerter Sonnenaufgang",
             "Delayed sunset time" : "Verzögerter Sonnenuntergang",
             "Sunrise" : "Sonnenaufgang",
-            "Sunset" : "Sonnenuntergang"
+            "Sunset" : "Sonnenuntergang",
+            "Sun position" : "Sonnenstand"
         }
     }
 }

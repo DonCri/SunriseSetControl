@@ -37,7 +37,7 @@ class SunriseSetControl extends IPSModule {
         $this->EnableAction('SUNSET_DELAY');
 
 
-        $this->RegisterVariableBoolean('SUNRISE_SUNSET', $this->Translate('Sunset state'), 'SunriseSunset', 8);
+        $this->RegisterVariableBoolean('SUNRISE_SUNSET', $this->Translate('Sun position'), 'SunriseSunset', 8);
 
         // Property
         $this->RegisterPropertyInteger('Location', 0);
