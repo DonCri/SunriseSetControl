@@ -1,7 +1,6 @@
 {
     "elements":
     [
-        { "type": "Label", "label": "Wähle die die Location bzw. Standort Instanz"},
-        { "type": "SelectInstance", "name": "Location", "caption": "InstanceID" }
+        { "type": "Label", "label": "Keine Konfigurationsmöglichkeiten"}
     ]
 }
