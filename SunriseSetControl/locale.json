@@ -1,0 +1,17 @@
+{
+    "translations": {
+        "de": {
+            "Sunrise state": "Sonnenaufgang Status",
+            "Sunset state": "Sonnenuntergang Status",
+            "Current sunrise time" : "Aktueller Sonnenaufgang",
+            "Current sunset time" : "Aktueller Sonnenuntergang",
+            "Location" : "Standort",
+            "Sunrise delay" : "Sonnenaufgang Verzögerung",
+            "Sunset delay" : "Sonnenuntergang Verzögerung",
+            "Delayed sunrise time" : "Verzögerter Sonnenaufgang",
+            "Delayed sunset time" : "Verzögerter Sonnenuntergang",
+            "Sunrise" : "Sonnenaufgang",
+            "Sunset" : "Sonnenuntergang"
+        }
+    }
+}

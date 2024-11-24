@@ -1,0 +1,14 @@
+{
+    "id": "{D1103954-D263-0A42-A82B-0FE6F3A15675}",
+    "name": "SunriseSetControl",
+    "type": 3,
+    "vendor": "Brelag Schweiz AG",
+    "aliases":
+        [
+            "Brelag Sunrise-, set Control"
+        ],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "BRELAG"
+}
