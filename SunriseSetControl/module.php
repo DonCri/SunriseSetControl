@@ -54,7 +54,7 @@ class SunriseSetControl extends IPSModule {
         $this->RegisterMessage($this->GetIDForIdent('SUNSET_DELAY'), 10603);
 
         // Set the current sunrise and sunset time
-        $this->SetCurrentSunsetRiseTime();
+        // $this->SetCurrentSunsetRiseTime();
     }
 
     public function RequestAction($Ident, $Value) {
@@ -72,6 +72,7 @@ class SunriseSetControl extends IPSModule {
         // RegisterMessages
         $this->RegisterMessage(IPS_GetObjectIDByIdent('Sunrise', $this->ReadPropertyInteger('Location')), 10603);
         $this->RegisterMessage(IPS_GetObjectIDByIdent('Sunset', $this->ReadPropertyInteger('Location')), 10603);
+        $this->SetCurrentSunsetRiseTime();
     }
 
     private function GetCurrenSunriseTime() {
