@@ -39,6 +39,7 @@ class SunriseSetControl extends IPSModule {
         $this->RegisterVariableBoolean('SUNRISE_SUNSET', $this->Translate('Sunset state'), 'SunriseSunset', 8);
 
         // Property
+        $this->RegisterPropertyInteger('Location', 0);
 
         // Atributes
 
@@ -47,8 +48,8 @@ class SunriseSetControl extends IPSModule {
         $this->RegisterTimer('EDITED_SUNSET', 0, 'BRELAG_TimerAction($_IPS[\'TARGET\'], false);');  
 
         // RegisterMessages
-        $this->RegisterMessage(IPS_GetObjectIDByIdent('Sunrise', IPS_GetObjectIDByName($this->Translate('Location'), 0)), 10603);
-        $this->RegisterMessage(IPS_GetObjectIDByIdent('Sunset', IPS_GetObjectIDByName($this->Translate('Location'), 0)), 10603);
+        $this->RegisterMessage(IPS_GetObjectIDByIdent('Sunrise', $this->ReadPropertyInteger('Location')), 10603);
+        $this->RegisterMessage(IPS_GetObjectIDByIdent('Sunset', $this->ReadPropertyInteger('Location')), 10603);
         $this->RegisterMessage($this->GetIDForIdent('SUNRISE_DELAY'), 10603);
         $this->RegisterMessage($this->GetIDForIdent('SUNSET_DELAY'), 10603);
 
@@ -71,12 +72,12 @@ class SunriseSetControl extends IPSModule {
     }
 
     private function GetCurrenSunriseTime() {
-        $currentSunriseTime = GetValue(IPS_GetObjectIDByIdent('Sunrise', IPS_GetObjectIDByName($this->Translate('Location'), 0)));
+        $currentSunriseTime = GetValue(IPS_GetObjectIDByIdent('Sunrise', $this->ReadPropertyInteger('Location'))); 
         return $currentSunriseTime;
     }
 
     private function GetCurrenSunsetTime() {
-        $currentSunsetTime = GetValue(IPS_GetObjectIDByIdent('Sunset', IPS_GetObjectIDByName($this->Translate('Location'), 0)));
+        $currentSunsetTime = GetValue(IPS_GetObjectIDByIdent('Sunset', $this->ReadPropertyInteger('Location')));
         return $currentSunsetTime;
     }
 

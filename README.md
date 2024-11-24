@@ -6,7 +6,7 @@ Schaltet eine Variable bei Sonnenaufgang bzw. Sonnenuntergang um. Es besteht die
 
 #### Konfigurationsformular
 
-Keins vorhanden.
+Auswahl der Location (Standort) Instanz.
 
 #### Funktionen
 

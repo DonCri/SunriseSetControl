@@ -1,6 +1,7 @@
 {
     "elements":
     [
-        { "type": "Label", "label": ""}
+        { "type": "Label", "label": "Wähle die die Location bzw. Standort Instanz"},
+        { "type": "SelectInstance", "name": "Location", "caption": "InstanceID" }
     ]
 }
