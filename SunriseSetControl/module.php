@@ -150,8 +150,8 @@ class SunriseSetControl extends IPSModule {
 
     public function MessageSink($TimeStamp, $SenderID, $Message, $Data) {
 
-        $sunriseVariableID = IPS_GetObjectIDByIdent('Sunrise', IPS_GetObjectIDByName($this->Translate('Location'), 0));
-        $sunsetVariableID = IPS_GetObjectIDByIdent('Sunset', IPS_GetObjectIDByName($this->Translate('Location'), 0));
+        $sunriseVariableID = IPS_GetObjectIDByIdent('Sunrise', $this->GetLocationInstanceID());
+        $sunsetVariableID = IPS_GetObjectIDByIdent('Sunset', $this->GetLocationInstanceID());
 
         switch ($SenderID) {
             case $sunriseVariableID:
