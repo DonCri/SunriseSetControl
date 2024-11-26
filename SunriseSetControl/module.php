@@ -124,8 +124,12 @@ class SunriseSetControl extends IPSModule {
         $this->SendLogMessage('Interval to sunset: ' . $intervalToDelayedSunset);
 
         // Set intervall for the timers, unit: milliseconds
-        $this->SetTimerInterval('EDITED_SUNRISE', $intervalToDelayedSunrise * 1000);
-        $this->SetTimerInterval('EDITED_SUNSET', $intervalToDelayedSunset * 1000);
+        $solarPosition = GetValue($this->GetIDForIdent('SUNRISE_SUNSET'));
+        if($solarPosition) {
+            $this->SetTimerInterval('EDITED_SUNRISE', $intervalToDelayedSunrise * 1000);
+        } else {
+            $this->SetTimerInterval('EDITED_SUNSET', $intervalToDelayedSunset * 1000);
+        }  
     }
 
     private function SendLogMessage($message) {
@@ -150,12 +154,12 @@ class SunriseSetControl extends IPSModule {
 
     public function MessageSink($TimeStamp, $SenderID, $Message, $Data) {
 
-        $sunriseVariableID = IPS_GetObjectIDByIdent('Sunrise', $this->GetLocationInstanceID());
-        $sunsetVariableID = IPS_GetObjectIDByIdent('Sunset', $this->GetLocationInstanceID());
+        //$sunriseVariableID = IPS_GetObjectIDByIdent('Sunrise', $this->GetLocationInstanceID());
+        //$sunsetVariableID = IPS_GetObjectIDByIdent('Sunset', $this->GetLocationInstanceID());
 
         switch ($SenderID) {
-            case $sunriseVariableID:
-            case $sunsetVariableID:
+            //case $sunriseVariableID:
+            //case $sunsetVariableID:
             case $this->GetIDForIdent('SUNRISE_DELAY'):
             case $this->GetIDForIdent('SUNSET_DELAY'):
                 $this->SetCurrentSunsetRiseTime();
