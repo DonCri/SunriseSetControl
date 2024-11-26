@@ -76,7 +76,7 @@ class SunriseSetControl extends IPSModule {
         parent::ApplyChanges();
 
         // Timer für die tägliche Ausführung konfigurieren
-        $this->ConfigureDelayedTime();
+        $this->ConfigureDelayedTime(true);
     }
 
     private function GetCurrenSunriseTime() {
@@ -99,7 +99,7 @@ class SunriseSetControl extends IPSModule {
         $this->SendLogMessage('Current sunset time: ' . date("d.m.Y - H:i:s", $nextSunset) . ' - Variable ID: ' . $this->GetIDForIdent('SUNSET_TIME'));
     }
 
-    public function ConfigureDelayedTime() {
+    public function ConfigureDelayedTime($value) {
         // Current Zeit
         $now = time();
 
@@ -125,7 +125,7 @@ class SunriseSetControl extends IPSModule {
 
         // Set intervall for the timers, unit: milliseconds
         $solarPosition = GetValue($this->GetIDForIdent('SUNRISE_SUNSET'));
-        if($solarPosition) {
+        if($value) {
             $this->SetTimerInterval('EDITED_SUNRISE', $intervalToDelayedSunrise * 1000);
         } else {
             $this->SetTimerInterval('EDITED_SUNSET', $intervalToDelayedSunset * 1000);
@@ -149,7 +149,7 @@ class SunriseSetControl extends IPSModule {
             }
         }
         // Reconfigure the timers
-        $this->ConfigureDelayedTime();
+        $this->ConfigureDelayedTime($value);
     }
 
     public function MessageSink($TimeStamp, $SenderID, $Message, $Data) {
@@ -161,9 +161,11 @@ class SunriseSetControl extends IPSModule {
             //case $sunriseVariableID:
             //case $sunsetVariableID:
             case $this->GetIDForIdent('SUNRISE_DELAY'):
+                $this->ConfigureDelayedTime(true);
+                break;
             case $this->GetIDForIdent('SUNSET_DELAY'):
-                $this->SetCurrentSunsetRiseTime();
-                $this->ConfigureDelayedTime();
+                //$this->SetCurrentSunsetRiseTime();
+                $this->ConfigureDelayedTime(false);
                 break;
             }
     }
