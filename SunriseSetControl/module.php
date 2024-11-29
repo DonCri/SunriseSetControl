@@ -43,6 +43,8 @@ class SunriseSetControl extends IPSModule {
         $this->RegisterPropertyInteger('Location', 0);
 
         // Atributes
+        $this->RegisterAttributeInteger('SunriseTime', $this->GetCurrenSunriseTime());
+        $this->RegisterAttributeInteger('SunsetTime', $this->GetCurrenSunsetTime());
 
         // Register a Timer with an Intervall of 0 milliseconds (initial deaktiviert)
         $this->RegisterTimer('EDITED_SUNRISE', 0, 'BRELAG_TimerAction($_IPS[\'TARGET\'], true);');
@@ -56,6 +58,8 @@ class SunriseSetControl extends IPSModule {
 
         // Set the current sunrise and sunset time
         $this->SetCurrentSunsetRiseTime();
+        $this->ConfigureDelayedTime(true);
+        $this->ConfigureDelayedTime(false);
     }
 
     // Get Location ID
@@ -95,6 +99,8 @@ class SunriseSetControl extends IPSModule {
 
         SetValue($this->GetIDForIdent('SUNRISE_TIME'), $nextSunrise); 
         SetValue($this->GetIDForIdent('SUNSET_TIME'), $nextSunset);
+        $this->WriteAttributeInteger('SunriseTime', $nextSunrise);
+        $this->WriteAttributeInteger('SunsetTime', $nextSunset);
         $this->SendLogMessage('Current sunrise time: ' . date("d.m.Y - H:i:s", $nextSunrise) . ' - Variable ID: ' . $this->GetIDForIdent('SUNRISE_TIME'));
         $this->SendLogMessage('Current sunset time: ' . date("d.m.Y - H:i:s", $nextSunset) . ' - Variable ID: ' . $this->GetIDForIdent('SUNSET_TIME'));
     }
@@ -104,11 +110,11 @@ class SunriseSetControl extends IPSModule {
         $now = time();
 
         // current sunrise time
-        $currentSunriseTime = $this->GetCurrenSunriseTime();
+        $currentSunriseTime = $this->ReadAttributeInteger('SunriseTime');
         $sunriseDelayInSeconds = GetValue($this->GetIDForIdent('SUNRISE_DELAY')) * 60;
         $delayedSunriseTime = $currentSunriseTime + $sunriseDelayInSeconds;
         // current sunset time
-        $currentSunsetTime = $this->GetCurrenSunsetTime();
+        $currentSunsetTime = $this->ReadAttributeInteger('SunsetTime');
         $sunsetDelayInSeconds = GetValue($this->GetIDForIdent('SUNSET_DELAY')) * 60;
         $delayedSunsetTime = $currentSunsetTime + $sunsetDelayInSeconds;
 
@@ -124,7 +130,7 @@ class SunriseSetControl extends IPSModule {
         $this->SendLogMessage('Interval to sunset: ' . $intervalToDelayedSunset);
 
         // Set intervall for the timers, unit: milliseconds
-        $solarPosition = GetValue($this->GetIDForIdent('SUNRISE_SUNSET'));
+        //$solarPosition = GetValue($this->GetIDForIdent('SUNRISE_SUNSET'));
         if($value) {
             $this->SetTimerInterval('EDITED_SUNRISE', $intervalToDelayedSunrise * 1000);
         } else {
@@ -166,7 +172,6 @@ class SunriseSetControl extends IPSModule {
                 $this->ConfigureDelayedTime(true);
                 break;
             case $this->GetIDForIdent('SUNSET_DELAY'):
-                //$this->SetCurrentSunsetRiseTime();
                 $this->ConfigureDelayedTime(false);
                 break;
             }
